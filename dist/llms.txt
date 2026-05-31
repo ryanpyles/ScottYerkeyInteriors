@@ -1,0 +1,5 @@
+## Pages
+- [| Immersive Gallery | Scott Arthur Yerkey`}](/projectgallery): No description available
+- [Admin Login - Scott Arthur Yerkey](/login): Admin login for Scott Arthur Yerkey Interiors CMS
+- [Portfolio | Scott Arthur Yerkey Interiors](/projectgalleries): Explore our complete archive of distinct residential spaces.
+- [Scott Arthur Yerkey Interiors](/home): Refined residential interiors balancing restraint, warmth, and architectural clarity.

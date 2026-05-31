@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(pkill -f \"vite\")",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(cp \"/Users/ryanpyles/Downloads/Write.cv.svg\" \"/Users/ryanpyles/Downloads/ScottYerkeyInterirors/public/signature-black.svg\")",
+      "Bash(cp \"/Users/ryanpyles/Downloads/Write.cv-2.svg\" \"/Users/ryanpyles/Downloads/ScottYerkeyInterirors/public/signature-black-bold.svg\")",
+      "Bash(cp \"/Users/ryanpyles/Downloads/Write.cv-3.svg\" \"/Users/ryanpyles/Downloads/ScottYerkeyInterirors/public/signature-white.svg\")",
+      "Bash(cp \"/Users/ryanpyles/Downloads/Write.cv-4.svg\" \"/Users/ryanpyles/Downloads/ScottYerkeyInterirors/public/signature-white-thin.svg\")",
+      "mcp__7f61295c-f132-4359-b53b-71e736ea0854__get_project_url",
+      "mcp__7f61295c-f132-4359-b53b-71e736ea0854__execute_sql",
+      "mcp__7f61295c-f132-4359-b53b-71e736ea0854__get_project",
+      "Bash(cat ~/.claude/mcp-needs-auth-cache.json 2>/dev/null)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(json.dumps\\({k:v for k,v in d.items\\(\\) if 'mcp' in k.lower\\(\\) or 'supabase' in k.lower\\(\\)}, indent=2\\)\\)\")",
+      "mcp__7f61295c-f132-4359-b53b-71e736ea0854__list_projects",
+      "Bash(curl -s -o /dev/null -w '%{http_code} %{size_download}b' https://ttqxhrxrkewmyyiqaafn.supabase.co/storage/v1/object/public/Projects/the-four-seasons-residences/four-seasons-01.jpg)",
+      "Bash(curl -s -o /dev/null -w '%{http_code} %{size_download}b' https://ttqxhrxrkewmyyiqaafn.supabase.co/storage/v1/object/public/Projects/sunset-lane/SunsetLane-02.jpg)",
+      "Bash(curl -s -X POST https://ttqxhrxrkewmyyiqaafn.supabase.co/storage/v1/object/list/Projects -H 'Authorization: Bearer sb_publishable_OkCWPTQaVfuxXdF16TjW5Q_KsSXX-5M' -H 'Content-Type: application/json' -d '{\"prefix\": \"Hero/\", \"limit\": 100}')",
+      "Bash(python3 -m json.tool)",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' https://ttqxhrxrkewmyyiqaafn.supabase.co/storage/v1/object/public/Projects/Hero/hero-images/)",
+      "Bash(curl -s -X POST https://ttqxhrxrkewmyyiqaafn.supabase.co/storage/v1/object/list/Projects -H 'apikey: sb_publishable_OkCWPTQaVfuxXdF16TjW5Q_KsSXX-5M' -H 'Authorization: Bearer sb_publishable_OkCWPTQaVfuxXdF16TjW5Q_KsSXX-5M' -H 'Content-Type: application/json' -d '{\"prefix\": \"Hero/hero-images/\", \"limit\": 100}')",
+      "Bash(curl -s -X POST https://ttqxhrxrkewmyyiqaafn.supabase.co/storage/v1/object/list/Projects -H 'apikey: sb_publishable_OkCWPTQaVfuxXdF16TjW5Q_KsSXX-5M' -H 'Authorization: Bearer sb_publishable_OkCWPTQaVfuxXdF16TjW5Q_KsSXX-5M' -H 'Content-Type: application/json' -d '{\"prefix\": \"\", \"limit\": 100, \"delimiter\": \"/\"}')",
+      "Bash(curl -s https://ttqxhrxrkewmyyiqaafn.supabase.co/storage/v1/bucket -H 'apikey: sb_publishable_OkCWPTQaVfuxXdF16TjW5Q_KsSXX-5M' -H 'Authorization: Bearer sb_publishable_OkCWPTQaVfuxXdF16TjW5Q_KsSXX-5M')",
+      "Bash(curl -s -X POST https://ttqxhrxrkewmyyiqaafn.supabase.co/storage/v1/object/list/Projects -H 'apikey: sb_publishable_OkCWPTQaVfuxXdF16TjW5Q_KsSXX-5M' -H 'Authorization: Bearer sb_publishable_OkCWPTQaVfuxXdF16TjW5Q_KsSXX-5M' -H 'Content-Type: application/json' -d '{\"prefix\": \"__TRACKED_VAR__/\", \"limit\": 100}')",
+      "WebSearch",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' https://ttqxhrxrkewmyyiqaafn.supabase.co/storage/v1/object/public/Hero/hero-images/__TRACKED_VAR__)",
+      "mcp__de3df195-cb36-4854-92a0-c03eedb18506__deploy_to_vercel",
+      "Bash(npx vercel *)",
+      "WebFetch(domain:www.justuscrabs.com)",
+      "Bash(gh api *)",
+      "WebFetch(domain:github.com)",
+      "Bash(ls /Users/ryanpyles/ 2>/dev/null | head -30)",
+      "Bash(npm --version)",
+      "Bash(npx create-next-app@latest ryanpyles-live-lab --typescript --tailwind --eslint --app --no-src-dir --import-alias \"@/*\")"
+    ]
+  }
+}

@@ -1,6 +1,14 @@
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST || 'smtp.hostinger.com',
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+});
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -14,9 +22,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    await resend.emails.send({
-      from: 'Scott Arthur Yerkey Design <noreply@scottarthuryerkey.com>',
-      to:   'chris@scottarthuryerkey.com',
+    await transporter.sendMail({
+      from: `"Scott Arthur Yerkey Design" <${process.env.SMTP_USER}>`,
+      to:      'chris@scottarthuryerkey.com',
       replyTo: email,
       subject: `New Inquiry — ${name}${project ? ` · ${project}` : ''}`,
       html: `
@@ -60,7 +68,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ success: true });
   } catch (err) {
-    console.error('Resend error:', err);
+    console.error('Mail error:', err);
     return res.status(500).json({ error: 'Failed to send. Please try again.' });
   }
 }

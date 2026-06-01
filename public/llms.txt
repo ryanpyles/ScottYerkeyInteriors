@@ -1,5 +1,33 @@
+# Scott Arthur Yerkey Interiors
+
+Interior architecture and design studio based in Chicago, Illinois. Scott Arthur Yerkey creates composed, enduring luxury residential interiors. Commissions accepted by introduction.
+
+## Studio
+
+- Principal: Scott Arthur Yerkey
+- Location: 4809 N Ravenswood Ave, Suite 117, Chicago, IL 60640
+- Phone: +1 (312) 771-3538
+- Email: chris@scottarthuryerkey.com
+- Markets: Chicago — New York — London — Los Angeles
+
 ## Pages
-- [| Immersive Gallery | Scott Arthur Yerkey`}](/projectgallery): No description available
-- [Admin Login - Scott Arthur Yerkey](/login): Admin login for Scott Arthur Yerkey Interiors CMS
-- [Portfolio | Scott Arthur Yerkey Interiors](/projectgalleries): Explore our complete archive of distinct residential spaces.
-- [Scott Arthur Yerkey Interiors](/home): Refined residential interiors balancing restraint, warmth, and architectural clarity.
+
+- [Home](https://scottarthuryerkey.com/): Full portfolio overview including hero, philosophy, selected residences, process, recognition, and inquiry form.
+- [The Four Seasons Residences](https://scottarthuryerkey.com/projects/the-four-seasons-residences): Full-floor luxury residence in one of Chicago's most celebrated buildings. Venetian plaster, aged brass, and stone from a single quarry. Chicago, Illinois — 2024.
+- [Sunset Lane](https://scottarthuryerkey.com/projects/sunset-lane): Gracious North Shore estate in Lake Forest. Natural materials — linen, limestone, hand-hewn oak — composed for Midwestern light. Lake Forest, Illinois — 2024.
+- [Lakeside](https://scottarthuryerkey.com/projects/lakeside): Summer residence on Lake Michigan's eastern shore. Bleached oak, raw concrete, palette drawn from dune grass, water, and sky. Lake Michigan, Michigan — 2023.
+- [Highland Park](https://scottarthuryerkey.com/projects/highland-park): Complete interior commission in Highland Park's historic district. Every room considered as part of a coherent whole. Highland Park, Illinois — 2023.
+- [Rancho Mirage](https://scottarthuryerkey.com/projects/rancho-mirage): Desert estate at the Villaggio Place development. Palette drawn from the Sonoran landscape — terracotta, sage, and raw steel. Rancho Mirage, California — 2022.
+- [Halco Dunes](https://scottarthuryerkey.com/projects/halco-dunes): Dunes retreat on the southern shore of Lake Michigan. Sand, cedar, and weathered steel. Michigan City, Indiana — 2022.
+- [W. Winona](https://scottarthuryerkey.com/projects/w-winona): Chicago greystone reimagined. No element added that the building did not already suggest. Chicago, Illinois — 2022.
+
+## Recognition
+
+- ADEX Platinum Award — Ringstad Zen Coffee Table — Design Journal / ADEX (2007)
+- ADEX Award Nominee — Santorini Console Table — Design Journal / ADEX (2024)
+- Featured Residence — Rancho Mirage — Palm Springs Life (2024)
+- Featured Studio — StyleChicago.com (Ongoing)
+
+## Site Credit
+
+Designed and developed by Ryan J. Pyles — FORMÆTRIX (https://www.formaetrix.com)

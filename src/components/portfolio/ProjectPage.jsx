@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PROJECTS } from '../../lib/supabase';
 import Navigation from './Navigation';
@@ -72,8 +73,67 @@ export default function ProjectPage() {
   // Related: 3 other projects (skip current)
   const related = PROJECTS.filter((p) => p.slug !== slug).slice(0, 3);
 
+  // Truncate description to ~155 chars for meta
+  const metaDesc = project.description.length > 155
+    ? project.description.slice(0, 152) + '…'
+    : project.description;
+
+  const canonicalUrl = `https://scottarthuryerkey.com/projects/${project.slug}`;
+
   return (
     <div className="bg-ivory text-charcoal overflow-x-clip">
+      <Helmet>
+        <title>{project.title} — Scott Arthur Yerkey Interiors</title>
+        <meta name="description" content={metaDesc} />
+        <link rel="canonical" href={canonicalUrl} />
+
+        {/* Open Graph */}
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="Scott Arthur Yerkey Interiors" />
+        <meta property="og:title" content={`${project.title} — Scott Arthur Yerkey Interiors`} />
+        <meta property="og:description" content={metaDesc} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={project.cover} />
+        <meta property="og:image:alt" content={`${project.title} by Scott Arthur Yerkey — ${project.location}`} />
+        <meta property="og:locale" content="en_US" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${project.title} — Scott Arthur Yerkey Interiors`} />
+        <meta name="twitter:description" content={metaDesc} />
+        <meta name="twitter:image" content={project.cover} />
+        <meta name="twitter:image:alt" content={`${project.title} by Scott Arthur Yerkey — ${project.location}`} />
+
+        {/* BreadcrumbList structured data */}
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://scottarthuryerkey.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Selected Residences", "item": "https://scottarthuryerkey.com/#residences" },
+            { "@type": "ListItem", "position": 3, "name": project.title, "item": canonicalUrl }
+          ]
+        })}</script>
+
+        {/* VisualArtwork structured data */}
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "VisualArtwork",
+          "name": project.title,
+          "description": project.description,
+          "locationCreated": { "@type": "Place", "name": project.location },
+          "dateCreated": project.year,
+          "artMedium": "Interior Architecture & Design",
+          "artist": {
+            "@type": "Person",
+            "name": "Scott Arthur Yerkey",
+            "url": "https://scottarthuryerkey.com"
+          },
+          "image": project.cover,
+          "url": canonicalUrl
+        })}</script>
+      </Helmet>
+
       <Navigation introComplete />
 
       {/* ── Full-screen hero ── */}

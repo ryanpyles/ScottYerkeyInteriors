@@ -86,9 +86,12 @@ export default function Footer() {
                 Chicago &mdash; New York<br />London &mdash; Los Angeles
               </p>
             </div>
-            <div className="mt-auto pt-6">
+            <div className="mt-auto pt-6 flex flex-col gap-1">
               <p className="label-caps-sm text-warm-gray/25 tracking-[0.22em]" style={{ fontSize: '7px' }}>
                 Site by FORM&AElig;TRIX
+              </p>
+              <p className="label-caps-sm text-warm-gray/20 tracking-[0.22em]" style={{ fontSize: '7px' }}>
+                Ryan J. Pyles
               </p>
             </div>
           </div>

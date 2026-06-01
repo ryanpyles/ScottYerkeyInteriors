@@ -13,10 +13,11 @@ import IntroAnimation from '@/components/portfolio/IntroAnimation';
 import ProjectPage    from '@/components/portfolio/ProjectPage';
 
 const instant = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('instant');
+const alreadySeen = typeof window !== 'undefined' && sessionStorage.getItem('introSeen') === 'true';
 
 function MainSite() {
-  // Skip intro entirely when ?instant=1 (screenshot mode / dev shortcut)
-  const [introComplete, setIntroComplete] = useState(instant);
+  // Skip intro when ?instant=1 OR when user has already seen it this session
+  const [introComplete, setIntroComplete] = useState(instant || alreadySeen);
   // Ref passed to Navigation so IntroAnimation can measure the nav wordmark position
   const navWordmarkRef = useRef(null);
 
@@ -29,7 +30,10 @@ function MainSite() {
           {!introComplete && (
             <IntroAnimation
               key="intro"
-              onComplete={() => setIntroComplete(true)}
+              onComplete={() => {
+                sessionStorage.setItem('introSeen', 'true');
+                setIntroComplete(true);
+              }}
               navWordmarkRef={navWordmarkRef}
             />
           )}

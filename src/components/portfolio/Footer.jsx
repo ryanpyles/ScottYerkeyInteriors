@@ -1,5 +1,10 @@
-function scrollTo(id) {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+function navigateTo(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    window.location.href = `/#${id}`;
+  }
 }
 
 const NAV_LINKS = ['residences', 'philosophy', 'approach', 'inquiry'];
@@ -35,7 +40,7 @@ export default function Footer() {
             {NAV_LINKS.map((id) => (
               <button
                 key={id}
-                onClick={() => scrollTo(id)}
+                onClick={() => navigateTo(id)}
                 className="label-caps-sm text-charcoal/75 hover:text-bronze tracking-[0.22em] capitalize text-left transition-colors duration-400 w-fit min-h-[44px] flex items-center"
               >
                 {id}
@@ -55,13 +60,13 @@ export default function Footer() {
               chris@scottarthuryerkey.com
             </a>
             <a
-              href="tel:+17738830775"
+              href="tel:+13127713538"
               className="font-sans font-light text-[11px] text-warm-gray hover:text-bronze transition-colors duration-400 min-h-[44px] flex items-center"
             >
-              +1 (773) 883-0775
+              +1 (312) 771-3538
             </a>
             <p className="font-sans font-light text-[11px] text-warm-gray leading-[1.85] mt-2">
-              4001 N Ravenswood Ave<br />Suite 301<br />Chicago, IL 60613
+              4809 N Ravenswood Ave<br />Suite 117<br />Chicago, IL 60640
             </p>
           </div>
 

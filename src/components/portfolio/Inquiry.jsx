@@ -46,7 +46,7 @@ export default function Inquiry() {
           <span className="label-caps text-bronze tracking-[0.36em]">Begin a Conversation</span>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-20 lg:gap-32 xl:gap-48">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-32 xl:gap-48">
 
           {/* ── Left: Context ── */}
           <div>
@@ -70,8 +70,8 @@ export default function Inquiry() {
 
             <motion.div className="mt-10 lg:mt-16 flex flex-col gap-1" {...fadeUp(0.3)}>
               <p className="label-caps-sm text-warm-gray/50 tracking-[0.3em] mb-2">Chicago, Illinois</p>
-              <a href="tel:+17738830775" className="font-sans font-light text-[13px] text-charcoal/70 hover:text-bronze transition-colors duration-400 min-h-[44px] flex items-center">
-                +1 (773) 883 0775
+              <a href="tel:+13127713538" className="font-sans font-light text-[13px] text-charcoal/70 hover:text-bronze transition-colors duration-400 min-h-[44px] flex items-center">
+                +1 (312) 771-3538
               </a>
               <a href="mailto:chris@scottarthuryerkey.com" className="font-sans font-light text-[13px] text-charcoal/70 hover:text-bronze transition-colors duration-400 min-h-[44px] flex items-center">
                 chris@scottarthuryerkey.com

@@ -136,8 +136,8 @@ function ProjectEntry({ project, onVisible }) {
 
         {/* Description */}
         <p className="font-sans font-light text-charcoal/50
-                      text-[11px] leading-[1.8] tracking-[0.04em]
-                      max-w-[260px] lg:max-w-[200px] mb-16">
+                      text-[13px] lg:text-[11px] leading-[1.8] tracking-[0.04em]
+                      max-w-[300px] lg:max-w-[200px] mb-16">
           {project.description}
         </p>
 

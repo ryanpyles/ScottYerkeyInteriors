@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { PROJECTS } from '../../lib/supabase';
 import Navigation from './Navigation';
 import Footer from './Footer';
@@ -9,10 +9,43 @@ import { VP } from './utils';
 export default function ProjectPage() {
   const { slug } = useParams();
   const project = PROJECTS.find((p) => p.slug === slug);
+  const [lightbox, setLightbox] = useState(null); // index into project.gallery
+
+  const closeLightbox = useCallback(() => setLightbox(null), []);
+  const prevImage = useCallback(() => setLightbox((i) => (i - 1 + project.gallery.length) % project.gallery.length), [project]);
+  const nextImage = useCallback(() => setLightbox((i) => (i + 1) % project.gallery.length), [project]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
+
+  // Keyboard nav + body scroll lock for lightbox
+  useEffect(() => {
+    if (lightbox === null) return;
+    const onKey = (e) => {
+      if (e.key === 'Escape')      closeLightbox();
+      if (e.key === 'ArrowRight')  nextImage();
+      if (e.key === 'ArrowLeft')   prevImage();
+    };
+    window.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [lightbox, closeLightbox, nextImage, prevImage]);
+
+  // Touch swipe for lightbox
+  const touchStartX = useRef(null);
+  const onTouchStart = useCallback((e) => {
+    touchStartX.current = e.touches[0].clientX;
+  }, []);
+  const onTouchEnd = useCallback((e) => {
+    if (touchStartX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(dx) > 48) { dx < 0 ? nextImage() : prevImage(); }
+    touchStartX.current = null;
+  }, [nextImage, prevImage]);
 
   if (!project) {
     return (
@@ -95,7 +128,7 @@ export default function ProjectPage() {
       </div>
 
       {/* ── Editorial body ── */}
-      <div className="editorial-container py-24 lg:py-36">
+      <div className="editorial-container py-16 lg:py-36">
 
         {/* Back link */}
         <motion.div
@@ -156,16 +189,96 @@ export default function ProjectPage() {
         {/* Gallery */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
           {project.gallery.map((src, i) => (
-            <div key={i} className="overflow-hidden bg-limestone/20">
+            <button
+              key={i}
+              onClick={() => setLightbox(i)}
+              className="overflow-hidden bg-limestone/20 block w-full text-left group cursor-zoom-in"
+              aria-label={`View image ${i + 1}`}
+            >
               <img
                 src={src}
                 alt={`${project.title} — ${i + 1}`}
-                className="w-full h-auto block"
+                className="w-full h-auto block transition-transform duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:scale-[1.03]"
                 onLoad={(e) => e.currentTarget.classList.add('loaded')}
               />
-            </div>
+            </button>
           ))}
         </div>
+
+        {/* Lightbox */}
+        <AnimatePresence>
+          {lightbox !== null && (
+            <motion.div
+              className="fixed inset-0 z-[200] flex items-center justify-center bg-charcoal/92"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35, ease: 'easeInOut' }}
+              onClick={closeLightbox}
+              onTouchStart={onTouchStart}
+              onTouchEnd={onTouchEnd}
+            >
+              {/* Image */}
+              <motion.img
+                key={lightbox}
+                src={project.gallery[lightbox]}
+                alt={`${project.title} — ${lightbox + 1}`}
+                className="max-h-[90vh] max-w-[90vw] object-contain select-none"
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.97 }}
+                transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                onClick={(e) => e.stopPropagation()}
+              />
+
+              {/* Prev — desktop only; mobile uses swipe */}
+              {project.gallery.length > 1 && (
+                <button
+                  onClick={(e) => { e.stopPropagation(); prevImage(); }}
+                  className="hidden sm:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 items-center justify-center w-11 h-11 text-ivory/60 hover:text-ivory transition-colors duration-300"
+                  aria-label="Previous image"
+                >
+                  <span className="block h-px w-8 bg-current rotate-[135deg] origin-right translate-y-[3px]" />
+                  <span className="block h-px w-8 bg-current -rotate-[135deg] origin-right -translate-y-[3px]" />
+                </button>
+              )}
+
+              {/* Next — desktop only; mobile uses swipe */}
+              {project.gallery.length > 1 && (
+                <button
+                  onClick={(e) => { e.stopPropagation(); nextImage(); }}
+                  className="hidden sm:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 items-center justify-center w-11 h-11 text-ivory/60 hover:text-ivory transition-colors duration-300"
+                  aria-label="Next image"
+                >
+                  <span className="block h-px w-8 bg-current -rotate-[45deg] origin-left translate-y-[3px]" />
+                  <span className="block h-px w-8 bg-current rotate-[45deg] origin-left -translate-y-[3px]" />
+                </button>
+              )}
+
+              {/* Close */}
+              <button
+                onClick={(e) => { e.stopPropagation(); closeLightbox(); }}
+                className="absolute top-6 right-6 lg:top-8 lg:right-8 text-ivory/50 hover:text-ivory transition-colors duration-300 w-11 h-11 flex items-center justify-center"
+                aria-label="Close"
+              >
+                <span className="block w-5 h-px bg-current rotate-45 translate-y-px" />
+                <span className="block w-5 h-px bg-current -rotate-45 -translate-y-px absolute" />
+              </button>
+
+              {/* Bottom: counter + swipe hint on mobile */}
+              <div className="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none">
+                <p className="label-caps-sm text-ivory/30 tracking-[0.3em]" style={{ fontSize: '8px' }}>
+                  {lightbox + 1} / {project.gallery.length}
+                </p>
+                {project.gallery.length > 1 && (
+                  <p className="sm:hidden label-caps-sm text-ivory/20 tracking-[0.25em]" style={{ fontSize: '7px' }}>
+                    Swipe to navigate
+                  </p>
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Bronze rule */}
         <div className="w-full h-px bg-limestone mt-20 mb-20" />

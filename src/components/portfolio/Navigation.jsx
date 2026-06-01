@@ -160,7 +160,7 @@ export default function Navigation({ introComplete = true, navWordmarkRef }) {
                 <motion.button
                   key={item.label}
                   onClick={() => handleMobileNav(item.href)}
-                  className="font-serif font-light text-5xl text-charcoal hover:text-bronze transition-colors duration-400 min-h-[44px] flex items-center"
+                  className="font-serif font-light text-4xl sm:text-5xl text-charcoal hover:text-bronze transition-colors duration-400 min-h-[44px] flex items-center"
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}

@@ -46,7 +46,7 @@ export default function Philosophy() {
           </div>
 
           {/* Location caption */}
-          <p className="absolute -bottom-5 right-0 label-caps-sm text-warm-gray/60 tracking-[0.28em]">
+          <p className="hidden sm:block absolute -bottom-5 right-0 label-caps-sm text-warm-gray/60 tracking-[0.28em]">
             Chicago &mdash; New York &mdash; London
           </p>
         </motion.div>

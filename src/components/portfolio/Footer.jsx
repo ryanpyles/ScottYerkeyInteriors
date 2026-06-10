@@ -1,3 +1,26 @@
+import { useState } from 'react';
+
+function CopyEmail({ address, className }) {
+  const [copied, setCopied] = useState(false);
+  function handleCopy(e) {
+    e.preventDefault();
+    navigator.clipboard.writeText(address).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
+  return (
+    <a
+      href={`mailto:${address}`}
+      onClick={handleCopy}
+      className={className}
+      title="Click to copy email address"
+    >
+      {copied ? 'Copied!' : address}
+    </a>
+  );
+}
+
 function navigateTo(id) {
   const el = document.getElementById(id);
   if (el) {
@@ -53,12 +76,10 @@ export default function Footer() {
             <p className="label-caps-sm text-warm-gray/45 tracking-[0.35em] mb-1" style={{ fontSize: '7px' }}>
               Contact
             </p>
-            <a
-              href="mailto:chris@scottarthuryerkey.com"
+            <CopyEmail
+              address="chris@scottarthuryerkey.com"
               className="font-sans font-light text-[11px] text-charcoal/75 hover:text-bronze transition-colors duration-400 min-h-[44px] flex items-center"
-            >
-              chris@scottarthuryerkey.com
-            </a>
+            />
             <a
               href="tel:+13127713538"
               className="font-sans font-light text-[11px] text-warm-gray hover:text-bronze transition-colors duration-400 min-h-[44px] flex items-center"

@@ -2,6 +2,22 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { VP } from './utils';
 
+function CopyEmail({ address, className }) {
+  const [copied, setCopied] = useState(false);
+  function handleCopy(e) {
+    e.preventDefault();
+    navigator.clipboard.writeText(address).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
+  return (
+    <a href={`mailto:${address}`} onClick={handleCopy} className={className} title="Click to copy email address">
+      {copied ? 'Copied!' : address}
+    </a>
+  );
+}
+
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
@@ -73,9 +89,10 @@ export default function Inquiry() {
               <a href="tel:+13127713538" className="font-sans font-light text-[13px] text-charcoal/70 hover:text-bronze transition-colors duration-400 min-h-[44px] flex items-center">
                 +1 (312) 771-3538
               </a>
-              <a href="mailto:chris@scottarthuryerkey.com" className="font-sans font-light text-[13px] text-charcoal/70 hover:text-bronze transition-colors duration-400 min-h-[44px] flex items-center">
-                chris@scottarthuryerkey.com
-              </a>
+              <CopyEmail
+                address="chris@scottarthuryerkey.com"
+                className="font-sans font-light text-[13px] text-charcoal/70 hover:text-bronze transition-colors duration-400 min-h-[44px] flex items-center"
+              />
             </motion.div>
           </div>
 

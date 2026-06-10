@@ -8,7 +8,7 @@ Portfolio website for **Scott Arthur Yerkey Interiors** — a luxury interior ar
 
 ## Overview
 
-A single-page portfolio application built with React and Vite. Features a signature intro animation, parallax scroll gallery, per-project case study pages, and a contact form powered by Resend. All project photography is served from Supabase Storage.
+A single-page portfolio application built with React and Vite. Features a signature intro animation, parallax scroll gallery, per-project case study pages with lightbox, and a contact form powered by Hostinger SMTP. All project photography is served from Supabase Storage.
 
 ---
 
@@ -17,11 +17,11 @@ A single-page portfolio application built with React and Vite. Features a signat
 | Layer | Technology |
 |---|---|
 | Framework | React 18 + Vite |
-| Styling | Tailwind CSS + shadcn/ui |
+| Styling | Tailwind CSS |
 | Animation | Framer Motion |
 | Routing | React Router v6 |
 | Image Storage | Supabase Storage |
-| Email | Resend (`/api/contact` serverless function) |
+| Email | Nodemailer + Hostinger SMTP (`/api/contact` serverless function) |
 | Hosting | Vercel |
 | SEO | react-helmet (per-page meta), JSON-LD structured data |
 
@@ -31,7 +31,7 @@ A single-page portfolio application built with React and Vite. Features a signat
 
 ```
 ├── api/
-│   └── contact.js          # Vercel serverless function — sends inquiry emails via Resend
+│   └── contact.js          # Vercel serverless function — sends inquiry emails via Hostinger SMTP
 ├── public/
 │   ├── sitemap.xml          # Full sitemap with image extensions for all 7 project pages
 │   ├── robots.txt
@@ -65,7 +65,6 @@ A single-page portfolio application built with React and Vite. Features a signat
 ### Prerequisites
 
 - Node.js 18+
-- A [Resend](https://resend.com) account with `scottarthuryerkey.com` verified as a sending domain
 - Supabase project with `Projects` and `Hero` storage buckets (images already uploaded)
 
 ### Install & Run
@@ -83,7 +82,7 @@ App runs at `http://localhost:3000`.
 npm run build
 ```
 
-Generates `dist/` — also runs `tools/generate-llms.js` to update `public/llms.txt`.
+Generates `dist/`.
 
 ---
 
@@ -93,12 +92,16 @@ Set in Vercel project settings (Settings → Environment Variables):
 
 | Variable | Description |
 |---|---|
-| `RESEND_API_KEY` | API key from [resend.com](https://resend.com) — required for contact form |
+| `SMTP_HOST` | SMTP hostname (defaults to `smtp.hostinger.com`) |
+| `SMTP_USER` | Hostinger email address used as the sending account |
+| `SMTP_PASS` | Hostinger email password |
 
-No `.env` file is needed locally unless you want to test the serverless function. For local API testing create `.env.local`:
+For local API testing create `.env.local`:
 
 ```
-RESEND_API_KEY=re_xxxxxxxxxxxx
+SMTP_HOST=smtp.hostinger.com
+SMTP_USER=noreply@scottarthuryerkey.com
+SMTP_PASS=your_password_here
 ```
 
 ---
@@ -116,7 +119,7 @@ RESEND_API_KEY=re_xxxxxxxxxxxx
 }
 ```
 
-Sends a formatted HTML email to `chris@scottarthuryerkey.com` with `replyTo` set to the sender's address. Requires `RESEND_API_KEY` set in Vercel environment variables and the sending domain verified in the Resend dashboard.
+Sends a formatted HTML email to `chris@scottarthuryerkey.com` with `replyTo` set to the sender's address. Uses Nodemailer with Hostinger SMTP on port 465 (SSL).
 
 ---
 

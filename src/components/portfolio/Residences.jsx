@@ -75,13 +75,24 @@ export default function Residences() {
 
 function ProjectEntry({ project, onVisible }) {
   const ref = useRef(null);
+  const [isDesktop, setIsDesktop] = useState(false);
 
-  // Parallax: content floats upward through its section as you scroll
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)');
+    setIsDesktop(mq.matches);
+    const handler = (e) => setIsDesktop(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  // Parallax: content floats upward through its section as you scroll (desktop only)
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start'],
   });
-  const y = useTransform(scrollYProgress, [0, 1], ['10%', '-10%']);
+  const yDesktop = useTransform(scrollYProgress, [0, 1], ['10%', '-10%']);
+  const yMobile = useTransform(scrollYProgress, [0, 1], ['0%', '0%']);
+  const y = isDesktop ? yDesktop : yMobile;
 
   // Image-swap trigger
   useEffect(() => {
@@ -98,7 +109,7 @@ function ProjectEntry({ project, onVisible }) {
   return (
     <div
       ref={ref}
-      className="relative min-h-[120vh] lg:min-h-[145vh] flex items-center border-b border-limestone/40"
+      className="relative lg:min-h-[145vh] flex items-center border-b border-limestone/40 pb-12 lg:pb-0"
     >
 
       {/* Mobile: stacked photo */}

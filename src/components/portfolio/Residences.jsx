@@ -124,26 +124,57 @@ function ProjectEntry({ project, onVisible }) {
 
       {/* ── MOBILE: text scrolls up naturally over the stuck image ───────── */}
       <div className="lg:hidden relative z-20 px-8 pt-12 pb-28">
-        <p className="label-caps text-ivory/60 tracking-[0.36em] text-[8px] mb-10">
-          {project.location}
-        </p>
-        <h3 className="font-serif font-light text-ivory leading-[0.96] text-[2.6rem] mb-10">
-          {project.title}
-        </h3>
-        <div className="w-8 h-px bg-bronze mb-10" />
-        <p className="font-sans font-light text-ivory/80 text-[14px] leading-[1.85] tracking-[0.03em] max-w-[300px] mb-16">
-          {project.description}
-        </p>
-        <Link
-          to={`/projects/${project.slug}`}
-          aria-label={`View project: ${project.title}`}
-          className="flex items-center gap-4 cursor-pointer group w-fit min-h-[44px]"
+        <motion.p
+          className="label-caps text-ivory/60 tracking-[0.36em] text-[8px] mb-10"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0 }}
         >
-          <span className="label-caps text-[8px] tracking-[0.32em] text-ivory/70 group-hover:text-bronze transition-colors duration-400">
-            View Project
-          </span>
-          <span className="block h-px w-8 bg-ivory/50 group-hover:bg-bronze group-hover:w-14 transition-all duration-500 ease-refined" />
-        </Link>
+          {project.location}
+        </motion.p>
+        <motion.h3
+          className="font-serif font-light text-ivory leading-[0.96] text-[2.6rem] mb-10"
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
+        >
+          {project.title}
+        </motion.h3>
+        <motion.div
+          className="w-8 h-px bg-bronze mb-10"
+          initial={{ scaleX: 0, originX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: 0.25 }}
+        />
+        <motion.p
+          className="font-sans font-light text-ivory/80 text-[14px] leading-[1.85] tracking-[0.03em] max-w-[300px] mb-16"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 0.45 }}
+        >
+          {project.description}
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.6 }}
+        >
+          <Link
+            to={`/projects/${project.slug}`}
+            aria-label={`View project: ${project.title}`}
+            className="flex items-center gap-4 cursor-pointer group w-fit min-h-[44px]"
+          >
+            <span className="label-caps text-[8px] tracking-[0.32em] text-ivory/70 group-hover:text-bronze transition-colors duration-400">
+              View Project
+            </span>
+            <span className="block h-px w-8 bg-ivory/50 group-hover:bg-bronze group-hover:w-14 transition-all duration-500 ease-refined" />
+          </Link>
+        </motion.div>
       </div>
 
       {/* ── DESKTOP: parallax text, right panel swaps cover image ─────────── */}

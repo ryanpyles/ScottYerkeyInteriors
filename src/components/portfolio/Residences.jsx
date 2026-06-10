@@ -116,22 +116,22 @@ function ProjectEntry({ project, onVisible }) {
           loading="lazy"
           onLoad={(e) => e.currentTarget.classList.add('loaded')}
         />
-        {/* Gradient: clear at top, heavy at bottom so text is legible */}
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/92 via-charcoal/25 to-transparent pointer-events-none" />
+        {/* Strong gradient so text is always legible regardless of image brightness */}
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: 'linear-gradient(to top, rgba(28,28,26,0.97) 0%, rgba(28,28,26,0.82) 30%, rgba(28,28,26,0.35) 60%, transparent 100%)' }}
+        />
       </div>
 
       {/* ── MOBILE: text scrolls up naturally over the stuck image ───────── */}
-      {/* Sits in flow right after the sticky image, so it enters viewport  */}
-      {/* from the bottom as you scroll — text appears over the dark gradient */}
       <div className="lg:hidden relative z-20 px-8 pt-12 pb-28">
-        <p className="label-caps text-ivory/45 tracking-[0.36em] text-[8px] mb-10">
+        <p className="label-caps text-ivory/60 tracking-[0.36em] text-[8px] mb-10">
           {project.location}
         </p>
         <h3 className="font-serif font-light text-ivory leading-[0.96] text-[2.6rem] mb-10">
           {project.title}
         </h3>
         <div className="w-8 h-px bg-bronze mb-10" />
-        <p className="font-sans font-light text-ivory/60 text-[14px] leading-[1.85] tracking-[0.03em] max-w-[300px] mb-16">
+        <p className="font-sans font-light text-ivory/80 text-[14px] leading-[1.85] tracking-[0.03em] max-w-[300px] mb-16">
           {project.description}
         </p>
         <Link
@@ -139,10 +139,10 @@ function ProjectEntry({ project, onVisible }) {
           aria-label={`View project: ${project.title}`}
           className="flex items-center gap-4 cursor-pointer group w-fit min-h-[44px]"
         >
-          <span className="label-caps text-[8px] tracking-[0.32em] text-ivory/50 group-hover:text-bronze transition-colors duration-400">
+          <span className="label-caps text-[8px] tracking-[0.32em] text-ivory/70 group-hover:text-bronze transition-colors duration-400">
             View Project
           </span>
-          <span className="block h-px w-8 bg-ivory/30 group-hover:bg-bronze group-hover:w-14 transition-all duration-500 ease-refined" />
+          <span className="block h-px w-8 bg-ivory/50 group-hover:bg-bronze group-hover:w-14 transition-all duration-500 ease-refined" />
         </Link>
       </div>
 

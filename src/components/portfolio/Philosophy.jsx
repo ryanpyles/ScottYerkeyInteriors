@@ -4,9 +4,9 @@ import { VP } from './utils';
 import { PHILOSOPHY_IMAGE } from '../../lib/supabase';
 
 const STATS = [
-  { number: '24+', label: 'Years' },
-  { number: '140',  label: 'Commissions' },
-  { number: '11',   label: 'States' },
+  { number: '24+', label: 'Years in Practice' },
+  { number: '140+', label: 'Residential Commissions' },
+  { number: '11',   label: 'U.S. States & Beyond' },
 ];
 
 const fadeUp = (delay = 0) => ({
@@ -47,7 +47,7 @@ export default function Philosophy() {
 
           {/* Location caption */}
           <p className="hidden sm:block absolute -bottom-5 right-0 label-caps-sm text-warm-gray/60 tracking-[0.28em]">
-            Chicago &mdash; New York &mdash; London
+            Chicago &mdash; New York &mdash; Beyond
           </p>
         </motion.div>
 
@@ -76,20 +76,20 @@ export default function Philosophy() {
             {...fadeUp(0.3)}
           >
             <p>
-              Scott Arthur Yerkey approaches each commission as a conversation between space, light, and
-              material — a negotiation between what a room is and what it might become. His work emerges
-              from a belief that truly considered interiors do not announce themselves, but reveal themselves
-              slowly, through the accumulated weight of deliberate decisions.
+              The most enduring homes are not assembled from objects, but composed as complete works of
+              interior architecture. Each room is considered in relation to the next: light, proportion,
+              and material held in deliberate balance.
             </p>
             <p>
-              Trained in architecture before turning to interior design, Yerkey brings a structural
-              sensibility to every project. Rooms are not decorated; they are composed. Proportions are
-              studied, materials are selected for their relationship to both light and time, and every
-              detail is considered against the whole.
+              Over more than two decades of practice, our work as a Chicago interior architecture and
+              design studio has focused on private residential commissions for clients who value quiet
+              rigor over momentary display. Spaces are developed from the architecture outward, with
+              interior planning, custom furnishings, and finishes resolved as a unified whole.
             </p>
             <p>
-              The result is a body of work that prizes permanence over trend, and character over novelty.
-              Spaces that feel as though they have always existed exactly as they are — and always will.
+              The result is a home that feels inevitable rather than styled: a restrained, highly edited
+              environment that reveals its structure over time, and lives comfortably for many years
+              beyond the moment it is created.
             </p>
           </motion.div>
 

@@ -76,13 +76,21 @@ export default function Inquiry() {
               <em>with inquiry.</em>
             </motion.h2>
 
-            <motion.p
-              className="font-sans font-light text-[13px] lg:text-[14px] text-warm-gray leading-[1.9] max-w-sm"
+            <motion.div
+              className="space-y-5 font-sans font-light text-[13px] lg:text-[14px] text-warm-gray leading-[1.9] max-w-sm"
               {...fadeUp(0.2)}
             >
-              We accept a limited number of commissions each year. Initial conversations are conducted
-              in complete confidence, with no obligation and absolute discretion.
-            </motion.p>
+              <p>
+                Scott Arthur Yerkey undertakes a limited number of private residential commissions each
+                year. New projects are accepted by introduction or direct inquiry from clients for whom
+                a composed, long‑view approach to luxury interior architecture is the right fit.
+              </p>
+              <p>
+                To begin a confidential conversation about your residence in Chicago, New York, or
+                another primary or secondary location, please share a brief description of your home,
+                your intended scope, and timeline.
+              </p>
+            </motion.div>
 
             <motion.div className="mt-10 lg:mt-16 flex flex-col gap-1" {...fadeUp(0.3)}>
               <p className="label-caps-sm text-warm-gray/50 tracking-[0.3em] mb-2">Chicago, Illinois</p>
@@ -111,18 +119,23 @@ export default function Inquiry() {
                   <p className="font-sans font-light text-[12px] text-bronze/80 -mt-4">{error}</p>
                 )}
 
-                <motion.button
-                  type="submit"
-                  disabled={sending}
-                  className="flex items-center gap-4 mt-4 w-fit group disabled:opacity-50"
-                  whileHover={sending ? {} : { x: 5 }}
-                  transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-                >
-                  <span className="label-caps text-[9px] tracking-[0.32em] text-charcoal group-hover:text-bronze transition-colors duration-400">
-                    {sending ? 'Sending…' : 'Submit Inquiry'}
-                  </span>
-                  <span className="block h-px bg-charcoal group-hover:bg-bronze w-10 group-hover:w-16 transition-all duration-500 ease-refined" />
-                </motion.button>
+                <div className="flex flex-col gap-3 mt-4">
+                  <motion.button
+                    type="submit"
+                    disabled={sending}
+                    className="flex items-center gap-4 w-fit group disabled:opacity-50"
+                    whileHover={sending ? {} : { x: 5 }}
+                    transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+                  >
+                    <span className="label-caps text-[9px] tracking-[0.32em] text-charcoal group-hover:text-bronze transition-colors duration-400">
+                      {sending ? 'Sending…' : 'Submit Confidential Inquiry'}
+                    </span>
+                    <span className="block h-px bg-charcoal group-hover:bg-bronze w-10 group-hover:w-16 transition-all duration-500 ease-refined" />
+                  </motion.button>
+                  <p className="font-sans font-light text-[11px] text-warm-gray/50 leading-[1.7]">
+                    We thoughtfully review each inquiry and respond to qualified projects within 2–3 business days.
+                  </p>
+                </div>
 
               </form>
             ) : (
@@ -149,15 +162,17 @@ export default function Inquiry() {
 }
 
 function Field({ label, name, type, value, onChange, required, placeholder }) {
+  const id = `field-${name}`;
   const base =
     'bg-transparent border-b border-limestone font-sans font-light text-[13px] text-charcoal py-3 outline-none ' +
     'focus:border-bronze transition-colors duration-500 placeholder:text-warm-gray/35 w-full';
 
   return (
     <div className="flex flex-col gap-3">
-      <label className="label-caps-sm text-warm-gray/70 tracking-[0.3em]">{label}</label>
+      <label htmlFor={id} className="label-caps-sm text-warm-gray/70 tracking-[0.3em]">{label}</label>
       {type === 'textarea' ? (
         <textarea
+          id={id}
           name={name}
           value={value}
           onChange={onChange}
@@ -168,6 +183,7 @@ function Field({ label, name, type, value, onChange, required, placeholder }) {
         />
       ) : (
         <input
+          id={id}
           type={type}
           name={name}
           value={value}

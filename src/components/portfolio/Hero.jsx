@@ -65,6 +65,14 @@ export default function Hero({ introComplete = true }) {
           </p>
 
           <div className="w-14 h-px bg-ivory/50 mt-1" />
+
+          <p className="font-serif font-light text-ivory/80 text-[1rem] sm:text-[1.1rem] lg:text-[1.2rem] leading-[1.6] max-w-sm sm:max-w-md text-center mt-2 italic">
+            For those who understand that the finest spaces are not decorated, but composed.
+          </p>
+
+          <p className="label-caps text-[7px] tracking-[0.32em] text-ivory/45 mt-1">
+            Composed, enduring luxury residences in Chicago, New York, and select destinations
+          </p>
         </motion.div>
       </div>
 

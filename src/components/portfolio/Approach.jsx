@@ -4,24 +4,24 @@ import { VP } from './utils';
 const PHASES = [
   {
     number: 'I',
-    phase: 'Discovery',
-    subtitle: 'Listening architecture',
+    phase: 'Understanding the Residence',
+    subtitle: 'Listening before designing',
     description:
-      'Every engagement begins with sustained observation. We study how light moves through a space across seasons, how a family inhabits their rooms, what silences they keep. Priorities emerge not through what a client says they want, but through what we observe them living.',
+      'Each commission begins with a careful reading of the architecture and how you live within it. We study light, circulation, and existing conditions, and we listen closely to your priorities for the home. Priorities emerge not through what a client says they want, but through what we observe them living.',
   },
   {
     number: 'II',
-    phase: 'Development',
-    subtitle: 'The language of materials',
+    phase: 'Composing the Interior Architecture',
+    subtitle: 'A single, unified drawing set',
     description:
-      'Material selection is not decoration — it is the construction of a sensory language unique to each project. We work with a considered palette of natural materials, each chosen for its relationship to light, to touch, and to the passage of time. Drawings are refined until every proportion resolves.',
+      'We develop interior plans, millwork, and key architectural elements, then resolve furnishings, textiles, and finishes as part of the same drawing set. This integrated approach ensures that every decision — from a doorway to a dining chair — belongs to a single composition.',
   },
   {
     number: 'III',
-    phase: 'Execution',
-    subtitle: 'Precision without compromise',
+    phase: 'Realization and Continuity',
+    subtitle: 'Fidelity through completion',
     description:
-      'The distance between concept and completion is where craft lives. We maintain close collaboration with master craftspeople and specialist artisans throughout every phase of construction, ensuring that the intelligence of the design is preserved in every detail, however small.',
+      'We coordinate with your architect, contractor, and craft partners to carry the design through construction and installation. Our involvement continues as needed, ensuring that the residence is delivered with fidelity to the original composition and remains livable as your life within it evolves.',
   },
 ];
 

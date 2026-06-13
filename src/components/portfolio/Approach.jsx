@@ -7,21 +7,21 @@ const PHASES = [
     phase: 'Understanding the Residence',
     subtitle: 'Listening before designing',
     description:
-      'Each commission begins with a careful reading of the architecture and how you live within it. We study light, circulation, and existing conditions, and we listen closely to your priorities for the home. Priorities emerge not through what a client says they want, but through what we observe them living.',
+      'We begin by reading the building: its proportions, its light, its relationship to how you move through it. We study what the architecture demands and what your life requires. The work of this phase is observation — not proposal. We do not present schemes until we understand the residence completely.',
   },
   {
     number: 'II',
     phase: 'Composing the Interior Architecture',
-    subtitle: 'A single, unified drawing set',
+    subtitle: 'One drawing set. Every decision resolved.',
     description:
-      'We develop interior plans, millwork, and key architectural elements, then resolve furnishings, textiles, and finishes as part of the same drawing set. This integrated approach ensures that every decision — from a doorway to a dining chair — belongs to a single composition.',
+      'Interior plans, millwork elevations, ceiling conditions, finish specifications, and furniture layouts are developed simultaneously, as parts of a single composition. Nothing is left to be figured out on-site. This integrated documentation is what allows a contractor, a craftsman, and a fabricator to build the same room.',
   },
   {
     number: 'III',
     phase: 'Realization and Continuity',
     subtitle: 'Fidelity through completion',
     description:
-      'We coordinate with your architect, contractor, and craft partners to carry the design through construction and installation. Our involvement continues as needed, ensuring that the residence is delivered with fidelity to the original composition and remains livable as your life within it evolves.',
+      'We remain present through construction, installation, and the close of the project. Our involvement is not supervisory in the administrative sense — it is creative continuity. We are there to ensure that the room built is the room designed, and that every decision made in the field reflects the original composition.',
   },
 ];
 
@@ -45,6 +45,9 @@ export default function Approach() {
                        text-4xl md:text-6xl lg:text-7xl xl:text-8xl">
           How we<br /><em>work.</em>
         </h2>
+        <p className="mt-6 font-sans font-light text-[14px] lg:text-[15px] text-warm-gray leading-[1.85] max-w-md">
+          Three phases. One continuous thought.
+        </p>
       </motion.div>
 
       {/* ── Phase columns ── */}
@@ -60,12 +63,10 @@ export default function Approach() {
           >
             <div className="flex flex-col gap-8">
 
-              {/* Roman numeral */}
               <span className="font-serif font-light text-limestone text-[3.5rem] lg:text-[5rem] leading-none select-none">
                 {phase.number}
               </span>
 
-              {/* Phase name */}
               <div className="flex flex-col gap-2">
                 <h3 className="font-serif font-light text-charcoal text-2xl lg:text-3xl">
                   {phase.phase}
@@ -75,7 +76,6 @@ export default function Approach() {
 
               <div className="w-7 h-px bg-bronze" />
 
-              {/* Body */}
               <p className="font-sans font-light text-[13px] lg:text-[14px] text-warm-gray leading-[1.9]">
                 {phase.description}
               </p>

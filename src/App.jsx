@@ -44,7 +44,7 @@ function MainSite() {
         <div id="home">
           <Hero introComplete={introComplete} />
         </div>
-        <div id="philosophy"><Philosophy /></div>
+        <div id="studio"><Philosophy /></div>
         <div id="residences"><Residences /></div>
         <div id="approach"><Approach /></div>
         <div id="recognition"><Recognition /></div>

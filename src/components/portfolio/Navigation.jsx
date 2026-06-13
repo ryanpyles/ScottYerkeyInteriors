@@ -2,15 +2,15 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const LEFT_NAV  = [
-  { label: 'Residences', href: '#residences' },
-  { label: 'Philosophy', href: '#philosophy' },
+  { label: 'Work',   href: '#residences' },
+  { label: 'Studio', href: '#studio'     },
 ];
 const RIGHT_NAV = [
-  { label: 'Approach',  href: '#approach' },
-  { label: 'Inquiry',   href: '#inquiry'  },
+  { label: 'Process',     href: '#approach'     },
+  { label: 'Recognition', href: '#recognition'  },
+  { label: 'Inquiry',     href: '#inquiry'      },
 ];
 
-// Works on main page (scroll) and project pages (navigate back to /#section)
 function navigateTo(href) {
   const el = document.querySelector(href);
   if (el) {
@@ -35,7 +35,6 @@ export default function Navigation({ introComplete = true, navWordmarkRef }) {
     setTimeout(() => navigateTo(href), 350);
   };
 
-  // Logo click: go to homepage if on a project page, else scroll to top
   const handleLogoClick = () => {
     if (window.location.pathname !== '/') {
       window.location.href = '/';
@@ -60,14 +59,13 @@ export default function Navigation({ introComplete = true, navWordmarkRef }) {
             : 'bg-transparent'
         }`}
       >
-        {/* ─── Signature — absolutely centered in the nav (desktop only) ─── */}
+        {/* ─── Signature — absolutely centered (desktop only) ─── */}
         <button
           ref={navWordmarkRef}
           onClick={handleLogoClick}
           aria-label="Scott Arthur Yerkey — home"
           className="hidden lg:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
         >
-          {/* White — over dark/hero backgrounds */}
           <img
             src="/signature-white.svg"
             alt="Scott Arthur Yerkey"
@@ -77,7 +75,6 @@ export default function Navigation({ introComplete = true, navWordmarkRef }) {
             style={{ filter: 'drop-shadow(0 0 2px rgba(255,255,255,0.4))' }}
             onLoad={(e) => e.currentTarget.classList.add('loaded')}
           />
-          {/* Bold dark — over ivory background */}
           <img
             src="/signature-black-bold.svg"
             alt=""
@@ -91,7 +88,7 @@ export default function Navigation({ introComplete = true, navWordmarkRef }) {
 
         <div className="editorial-container py-6 lg:py-8">
 
-          {/* ── Desktop: links only ── */}
+          {/* ── Desktop: 2 left + 3 right flanking centered logo ── */}
           <div className="hidden lg:flex items-center justify-between">
             <div className="flex items-center gap-10">
               {LEFT_NAV.map((item) => (

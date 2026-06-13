@@ -5,7 +5,7 @@ const ENTRIES = [
   {
     year: '2007',
     title: 'ADEX Platinum Award',
-    detail: 'Ringstad Zen Coffee Table',
+    detail: 'Ringstad Zen Coffee Table — highest honor awarded by the Design Journal',
     org: 'Design Journal / ADEX',
   },
   {
@@ -17,13 +17,13 @@ const ENTRIES = [
   {
     year: '2024',
     title: 'The Comfort Factor',
-    detail: 'Featured residence — Rancho Mirage',
+    detail: 'Featured residence — Rancho Mirage, California',
     org: 'Palm Springs Life',
   },
   {
     year: 'Ongoing',
     title: 'Featured Studio',
-    detail: 'Award-winning architectural design practice',
+    detail: 'Award-winning interior architecture and design practice',
     org: 'StyleChicago.com',
   },
 ];
@@ -46,8 +46,13 @@ export default function Recognition() {
         </div>
         <h2 className="font-serif font-light text-charcoal leading-[1.0]
                        text-4xl md:text-6xl lg:text-7xl xl:text-8xl max-w-xl">
-          Awards &amp;<br /><em>press.</em>
+          Independent<br />
+          <em>recognition of the work.</em>
         </h2>
+        <p className="mt-8 font-sans font-light text-[14px] lg:text-[15px] text-warm-gray leading-[1.85] max-w-md">
+          The studio's projects have been recognized by the American Society of Interior Designers
+          and published in regional and national design media.
+        </p>
       </motion.div>
 
       {/* ── Vertical list ── */}

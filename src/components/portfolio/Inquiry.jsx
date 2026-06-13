@@ -25,8 +25,26 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 1.0, delay, ease: [0.25, 0.1, 0.25, 1] },
 });
 
+const PROJECT_TYPES = [
+  'New construction',
+  'Full-residence renovation',
+  'Partial renovation',
+  'Not yet determined',
+];
+
+const REFERRAL_SOURCES = [
+  'Client referral',
+  'Architect or contractor referral',
+  'Press or editorial',
+  'Search',
+  'Other',
+];
+
 export default function Inquiry() {
-  const [form, setForm]       = useState({ name: '', email: '', project: '', message: '' });
+  const [form, setForm] = useState({
+    name: '', email: '', location: '', projectType: '', sqft: '',
+    timeline: '', referral: '', message: '',
+  });
   const [sent, setSent]       = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError]     = useState('');
@@ -81,20 +99,41 @@ export default function Inquiry() {
               {...fadeUp(0.2)}
             >
               <p>
-                Scott Arthur Yerkey undertakes a limited number of private residential commissions each
-                year. New projects are accepted by introduction or direct inquiry from clients for whom
-                a composed, long‑view approach to luxury interior architecture is the right fit.
+                The studio accepts a limited number of private residential commissions each year.
+                New projects are considered by introduction or direct inquiry.
               </p>
               <p>
-                To begin a confidential conversation about your residence in Chicago, New York, or
-                another primary or secondary location, please share a brief description of your home,
-                your intended scope, and timeline.
+                To begin a confidential conversation, please share a brief description of your
+                residence, intended scope, location, and timeline.
               </p>
             </motion.div>
 
-            <motion.div className="mt-10 lg:mt-16 flex flex-col gap-1" {...fadeUp(0.3)}>
+            {/* Qualification guide */}
+            <motion.div
+              className="mt-10 lg:mt-14 pt-8 border-t border-limestone/60"
+              {...fadeUp(0.3)}
+            >
+              <p className="label-caps-sm text-warm-gray/50 tracking-[0.3em] mb-6">This studio is the right fit if</p>
+              <ul className="flex flex-col gap-4">
+                {[
+                  'Your project is a primary or secondary residence requiring a complete interior scope',
+                  'You are working with an architect or builder, or are open to that coordination',
+                  'You are planning 12–36 months ahead and value process over pace',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-4">
+                    <span className="w-4 h-px bg-bronze shrink-0 mt-[0.6em]" />
+                    <span className="font-sans font-light text-[12px] lg:text-[13px] text-warm-gray leading-[1.85]">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            <motion.div className="mt-10 lg:mt-16 flex flex-col gap-1" {...fadeUp(0.4)}>
               <p className="label-caps-sm text-warm-gray/50 tracking-[0.3em] mb-2">Chicago, Illinois</p>
-              <a href="tel:+13127713538" className="font-sans font-light text-[13px] text-charcoal/70 hover:text-bronze transition-colors duration-400 min-h-[44px] flex items-center">
+              <a
+                href="tel:+13127713538"
+                className="font-sans font-light text-[13px] text-charcoal/70 hover:text-bronze transition-colors duration-400 min-h-[44px] flex items-center"
+              >
                 +1 (312) 771-3538
               </a>
               <CopyEmail
@@ -107,19 +146,23 @@ export default function Inquiry() {
           {/* ── Right: Form ── */}
           <motion.div {...fadeUp(0.2)}>
             {!sent ? (
-              <form onSubmit={submit} className="flex flex-col gap-8 lg:gap-12">
+              <form onSubmit={submit} className="flex flex-col gap-8 lg:gap-10">
 
-                <Field label="Full Name"          name="name"    type="text"     value={form.name}    onChange={update} required />
-                <Field label="Email Address"       name="email"   type="email"    value={form.email}   onChange={update} required />
-                <Field label="Nature of Project"   name="project" type="text"     value={form.project} onChange={update}
-                       placeholder="Residential, Estate, Penthouse…" />
-                <Field label="Your Message"        name="message" type="textarea" value={form.message} onChange={update} required />
+                <Field label="Full Name"             name="name"        type="text"     value={form.name}        onChange={update} required />
+                <Field label="Email Address"         name="email"       type="email"    value={form.email}       onChange={update} required />
+                <Field label="Residence Location"    name="location"    type="text"     value={form.location}    onChange={update} placeholder="City, State" required />
+                <Field label="Project Type"          name="projectType" type="select"   value={form.projectType} onChange={update} options={PROJECT_TYPES} />
+                <Field label="Approximate Square Footage (optional)" name="sqft" type="text" value={form.sqft} onChange={update} placeholder="e.g. 4,500 sq ft" />
+                <Field label="Intended Start Date"  name="timeline"    type="text"     value={form.timeline}    onChange={update} placeholder="e.g. Spring 2026" />
+                <Field label="How did you hear about the studio?" name="referral" type="select" value={form.referral} onChange={update} options={REFERRAL_SOURCES} />
+                <Field label="Brief Description of Your Project" name="message" type="textarea" value={form.message} onChange={update} required
+                       placeholder="Describe your home and what you're hoping to achieve." />
 
                 {error && (
                   <p className="font-sans font-light text-[12px] text-bronze/80 -mt-4">{error}</p>
                 )}
 
-                <div className="flex flex-col gap-3 mt-4">
+                <div className="flex flex-col gap-3 mt-2">
                   <motion.button
                     type="submit"
                     disabled={sending}
@@ -133,7 +176,7 @@ export default function Inquiry() {
                     <span className="block h-px bg-charcoal group-hover:bg-bronze w-10 group-hover:w-16 transition-all duration-500 ease-refined" />
                   </motion.button>
                   <p className="font-sans font-light text-[11px] text-warm-gray/50 leading-[1.7]">
-                    We thoughtfully review each inquiry and respond to qualified projects within 2–3 business days.
+                    All inquiries are handled in strict confidence. We respond to qualified projects within 2–3 business days.
                   </p>
                 </div>
 
@@ -148,8 +191,8 @@ export default function Inquiry() {
                 <div className="w-7 h-px bg-bronze" />
                 <h3 className="font-serif font-light text-charcoal text-4xl">Thank you.</h3>
                 <p className="font-sans font-light text-[13px] text-warm-gray leading-[1.9] max-w-sm">
-                  We have received your inquiry and will respond within two business days. We look
-                  forward to learning more about your vision.
+                  We have received your inquiry and will respond within two to three business days.
+                  We look forward to learning more about your residence.
                 </p>
               </motion.div>
             )}
@@ -161,7 +204,7 @@ export default function Inquiry() {
   );
 }
 
-function Field({ label, name, type, value, onChange, required, placeholder }) {
+function Field({ label, name, type, value, onChange, required, placeholder, options }) {
   const id = `field-${name}`;
   const base =
     'bg-transparent border-b border-limestone font-sans font-light text-[13px] text-charcoal py-3 outline-none ' +
@@ -172,24 +215,22 @@ function Field({ label, name, type, value, onChange, required, placeholder }) {
       <label htmlFor={id} className="label-caps-sm text-warm-gray/70 tracking-[0.3em]">{label}</label>
       {type === 'textarea' ? (
         <textarea
-          id={id}
-          name={name}
-          value={value}
-          onChange={onChange}
-          required={required}
-          rows={4}
-          placeholder={placeholder}
+          id={id} name={name} value={value} onChange={onChange}
+          required={required} rows={4} placeholder={placeholder}
           className={`${base} resize-none`}
         />
+      ) : type === 'select' ? (
+        <select
+          id={id} name={name} value={value} onChange={onChange}
+          className={`${base} cursor-pointer appearance-none`}
+        >
+          <option value="">Select&hellip;</option>
+          {options.map((o) => <option key={o} value={o}>{o}</option>)}
+        </select>
       ) : (
         <input
-          id={id}
-          type={type}
-          name={name}
-          value={value}
-          onChange={onChange}
-          required={required}
-          placeholder={placeholder}
+          id={id} type={type} name={name} value={value} onChange={onChange}
+          required={required} placeholder={placeholder}
           className={base}
         />
       )}

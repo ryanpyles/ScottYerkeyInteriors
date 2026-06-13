@@ -33,6 +33,7 @@ export default function Hero({ introComplete = true }) {
             src={IMAGES[current].src}
             alt={IMAGES[current].alt}
             className="w-full h-full object-cover"
+            fetchpriority={current === 0 ? 'high' : undefined}
             initial={{ scale: 1.06 }}
             animate={{ scale: 1.0 }}
             transition={{ duration: 9, ease: [0.25, 0.1, 0.1, 1] }}
@@ -45,7 +46,7 @@ export default function Hero({ introComplete = true }) {
       <div className="absolute inset-0 bg-charcoal/25 pointer-events-none" />
       <div className="absolute bottom-0 left-0 right-0 h-2/5 bg-gradient-to-t from-charcoal/35 to-transparent pointer-events-none" />
 
-      {/* ── Centre content — waits for intro to complete ── */}
+      {/* ── Centre content ── */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
         <motion.div
           className="flex flex-col items-center gap-7"
@@ -66,13 +67,10 @@ export default function Hero({ introComplete = true }) {
 
           <div className="w-14 h-px bg-ivory/50 mt-1" />
 
-          <p className="font-serif font-light text-ivory/80 text-[1rem] sm:text-[1.1rem] lg:text-[1.2rem] leading-[1.6] max-w-sm sm:max-w-md text-center mt-2 italic">
-            For those who understand that the finest spaces are not decorated, but composed.
+          <p className="font-serif font-light text-ivory/85 text-[1rem] sm:text-[1.1rem] lg:text-[1.2rem] leading-[1.65] max-w-sm sm:max-w-md text-center mt-2 italic">
+            For those who understand that the finest spaces<br className="hidden sm:block" /> are not decorated, but composed.
           </p>
 
-          <p className="label-caps text-[7px] tracking-[0.32em] text-ivory/45 mt-1">
-            Composed, enduring luxury residences in Chicago, New York, and select destinations
-          </p>
         </motion.div>
       </div>
 
@@ -87,8 +85,8 @@ export default function Hero({ introComplete = true }) {
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            aria-label={`Image ${i + 1}`}
-            className={`min-h-[44px] flex items-center px-1 transition-all duration-700`}
+            aria-label={`View image ${i + 1}`}
+            className="min-h-[44px] flex items-center px-1 transition-all duration-700"
           >
             <span className={`block h-px transition-all duration-700 ${
               i === current ? 'w-10 bg-ivory' : 'w-4 bg-ivory/35'

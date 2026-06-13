@@ -30,7 +30,23 @@ function navigateTo(id) {
   }
 }
 
-const NAV_LINKS = ['residences', 'philosophy', 'approach', 'inquiry'];
+const WORK_LINKS = [
+  { label: 'The Four Seasons Residences', slug: 'the-four-seasons-residences' },
+  { label: 'Sunset Lane',                 slug: 'sunset-lane' },
+  { label: 'Lakeside',                    slug: 'lakeside' },
+  { label: 'Highland Park',               slug: 'highland-park' },
+  { label: 'Rancho Mirage',               slug: 'rancho-mirage' },
+  { label: 'Halco Dunes',                 slug: 'halco-dunes' },
+  { label: 'Browning Court',              slug: 'browning-court' },
+  { label: 'W. Winona',                   slug: 'w-winona' },
+];
+
+const STUDIO_LINKS = [
+  { label: 'Studio',      id: 'studio'      },
+  { label: 'Process',     id: 'approach'    },
+  { label: 'Recognition', id: 'recognition' },
+  { label: 'Inquiry',     id: 'inquiry'     },
+];
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -42,7 +58,7 @@ export default function Footer() {
         {/* ── Four columns ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-10">
 
-          {/* Studio */}
+          {/* Wordmark + tagline */}
           <div className="col-span-1 sm:col-span-2 lg:col-span-1">
             <img
               src="/signature-black.svg"
@@ -55,23 +71,40 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Navigation */}
+          {/* Selected Work */}
+          <div className="flex flex-col gap-4">
+            <p className="label-caps-sm text-warm-gray/45 tracking-[0.35em] mb-1" style={{ fontSize: '7px' }}>
+              Selected Work
+            </p>
+            {WORK_LINKS.map(({ label, slug }) => (
+              <a
+                key={slug}
+                href={`/projects/${slug}`}
+                className="label-caps-sm text-charcoal/60 hover:text-bronze tracking-[0.18em] capitalize text-left transition-colors duration-400 w-fit"
+                style={{ fontSize: '8px' }}
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+
+          {/* Studio Navigation */}
           <div className="flex flex-col gap-5">
             <p className="label-caps-sm text-warm-gray/45 tracking-[0.35em] mb-1" style={{ fontSize: '7px' }}>
-              Navigation
+              Studio
             </p>
-            {NAV_LINKS.map((id) => (
+            {STUDIO_LINKS.map(({ label, id }) => (
               <button
                 key={id}
                 onClick={() => navigateTo(id)}
                 className="label-caps-sm text-charcoal/75 hover:text-bronze tracking-[0.22em] capitalize text-left transition-colors duration-400 w-fit min-h-[44px] flex items-center"
               >
-                {id}
+                {label}
               </button>
             ))}
           </div>
 
-          {/* Contact */}
+          {/* Contact + studio note */}
           <div className="flex flex-col gap-5">
             <p className="label-caps-sm text-warm-gray/45 tracking-[0.35em] mb-1" style={{ fontSize: '7px' }}>
               Contact
@@ -86,27 +119,12 @@ export default function Footer() {
             >
               +1 (312) 771-3538
             </a>
-            <p className="font-sans font-light text-[11px] text-warm-gray leading-[1.85] mt-2">
+            <p className="font-sans font-light text-[11px] text-warm-gray leading-[1.85] mt-1">
               4809 N Ravenswood Ave<br />Suite 117<br />Chicago, IL 60640
             </p>
-          </div>
-
-          {/* Studio note */}
-          <div className="flex flex-col gap-5">
-            <p className="label-caps-sm text-warm-gray/45 tracking-[0.35em] mb-1" style={{ fontSize: '7px' }}>
-              Studio
+            <p className="font-sans font-light text-[11px] text-warm-gray/60 leading-[1.85] mt-2">
+              Commissions accepted by introduction.<br />Initial inquiries in complete confidence.
             </p>
-            <p className="font-sans font-light text-[11px] text-warm-gray leading-[1.85]">
-              Commissions accepted by introduction. Initial inquiries in complete confidence.
-            </p>
-            <div className="mt-1">
-              <p className="label-caps-sm text-warm-gray/40 tracking-[0.28em] mb-2" style={{ fontSize: '7px' }}>
-                Service Markets
-              </p>
-              <p className="font-sans font-light text-[11px] text-warm-gray leading-[1.85]">
-                Chicago &mdash; New York<br />London &mdash; Los Angeles
-              </p>
-            </div>
             <div className="mt-auto pt-6 flex flex-col gap-1">
               <p className="label-caps-sm text-warm-gray/25 tracking-[0.22em]" style={{ fontSize: '7px' }}>
                 Site by FORM&AElig;TRIX

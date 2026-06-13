@@ -21,6 +21,8 @@ export default function ProjectPage() {
   }, [slug]);
 
   // Keyboard nav + body scroll lock for lightbox
+  const closeButtonRef = useRef(null);
+
   useEffect(() => {
     if (lightbox === null) return;
     const onKey = (e) => {
@@ -30,6 +32,8 @@ export default function ProjectPage() {
     };
     window.addEventListener('keydown', onKey);
     document.body.style.overflow = 'hidden';
+    // Move focus to close button when lightbox opens
+    setTimeout(() => closeButtonRef.current?.focus(), 50);
     return () => {
       window.removeEventListener('keydown', onKey);
       document.body.style.overflow = '';
@@ -232,6 +236,11 @@ export default function ProjectPage() {
               <p className="label-caps text-[8px] tracking-[0.34em] text-warm-gray/50">
                 {project.category}
               </p>
+              {project.scope && (
+                <p className="label-caps text-[8px] tracking-[0.34em] text-warm-gray/50">
+                  {project.scope}
+                </p>
+              )}
             </div>
           </div>
 
@@ -317,9 +326,10 @@ export default function ProjectPage() {
 
               {/* Close */}
               <button
+                ref={closeButtonRef}
                 onClick={(e) => { e.stopPropagation(); closeLightbox(); }}
-                className="absolute top-6 right-6 lg:top-8 lg:right-8 text-ivory/50 hover:text-ivory transition-colors duration-300 w-11 h-11 flex items-center justify-center"
-                aria-label="Close"
+                className="absolute top-6 right-6 lg:top-8 lg:right-8 text-ivory/50 hover:text-ivory transition-colors duration-300 w-11 h-11 flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-ivory/60"
+                aria-label="Close lightbox"
               >
                 <span className="block w-5 h-px bg-current rotate-45 translate-y-px" />
                 <span className="block w-5 h-px bg-current -rotate-45 -translate-y-px absolute" />

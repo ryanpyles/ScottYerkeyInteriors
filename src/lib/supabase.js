@@ -41,6 +41,7 @@ export const PROJECTS = [
     location: 'Chicago, Illinois',
     year: '2024',
     category: 'Luxury High-Rise',
+    scope: 'Full-floor residence — complete interior commission',
     description:
       "A full-floor residence within one of Chicago's most celebrated buildings. The interiors negotiate the extraordinary with the intimate — Venetian plaster, aged brass, and stone drawn from a single quarry compose rooms of unhurried authority.",
     cover: coverUrl('the-four-seasons-residences/four-seasons-01.jpg'),
@@ -60,6 +61,7 @@ export const PROJECTS = [
     location: 'Lake Forest, Illinois',
     year: '2024',
     category: 'Private Residence',
+    scope: 'Estate residence — complete interior commission',
     description:
       'A classical North Shore estate of considerable scale, resolved with the kind of discipline that large architecture demands. A sweeping entry rotunda, hand-detailed millwork, and a palette drawn from stone and aged gilt compose rooms of genuine ceremony — each one proportioned to the life lived within it.',
     cover: coverUrl('sunset-lane/sunset-lane-hero.webp'),
@@ -86,6 +88,7 @@ export const PROJECTS = [
     location: 'Lake Michigan, Michigan',
     year: '2023',
     category: 'Lakeside Estate',
+    scope: 'Lakeside residence — complete interior commission',
     description:
       'A summer residence on the eastern shore of Lake Michigan, designed to dissolve the boundary between interior and landscape. Bleached oak, raw concrete, and palette borrowed entirely from dune grass, water, and sky.',
     cover: coverUrl('lakeside/LakeSide0472.jpg'),
@@ -129,6 +132,7 @@ export const PROJECTS = [
     location: 'Highland Park, Illinois',
     year: '2023',
     category: 'Suburban Residence',
+    scope: 'Historic district residence — complete interior commission',
     description:
       "A complete interior commission in Highland Park's historic district. Every room considered as part of a coherent whole — proportions studied, materials selected for their relationship to light, and each detail resolved against the architecture.",
     cover: coverUrl('highland-park/HighlandPark2.jpg'),
@@ -155,6 +159,7 @@ export const PROJECTS = [
     location: 'Rancho Mirage, California',
     year: '2022',
     category: 'Desert Estate',
+    scope: 'Desert estate — complete interior commission',
     description:
       'A Californian desert estate at the Villaggio Place development. The palette is drawn from the Sonoran landscape — terracotta, sage, and raw steel — while the scale remains quietly domestic, resisting the temptation of spectacle.',
     cover: coverUrl('rancho-mirage/RanchoMirage-Hero.png'),
@@ -176,6 +181,7 @@ export const PROJECTS = [
     location: 'Michigan City, Indiana',
     year: '2022',
     category: 'Dunes Residence',
+    scope: 'Dunes retreat — complete interior commission',
     description:
       'A dunes retreat on the southern shore of Lake Michigan. Sand, cedar, and weathered steel form a home that reads as inevitable against its landscape — as though it arrived not by design but by geological time.',
     cover: coverUrl('halco-dunes/HalcoDunes.jpeg'),
@@ -194,6 +200,7 @@ export const PROJECTS = [
     location: 'Highland Park, Illinois',
     year: '2023',
     category: 'Private Residence',
+    scope: 'Private residence — complete interior commission',
     description:
       'A private residence on Browning Court composed from the architecture inward. Each room resolved as part of a continuous whole — materials, light, and proportion held in deliberate balance throughout.',
     cover: coverUrl('browningcourt-highlandpark/browningcourt-highlandpark02.jpg'),
@@ -216,6 +223,7 @@ export const PROJECTS = [
     location: 'Chicago, Illinois',
     year: '2022',
     category: 'Urban Residence',
+    scope: 'Chicago greystone — complete interior commission',
     description:
       'A Chicago greystone reimagined from structure outward. The original architecture demanded restraint — no element added that the building did not already suggest. The result is a city home of genuine character and uncommon quiet.',
     cover: coverUrl('w-winona/Winona.png'),

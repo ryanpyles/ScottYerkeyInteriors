@@ -1,35 +1,29 @@
-const SUPABASE_URL = 'https://ttqxhrxrkewmyyiqaafn.supabase.co';
-const BUCKET       = 'Projects';
-const HERO_BUCKET  = 'Hero';
+const CLOUD  = 'dmkt5zcoz';
+const PREFIX = 'scott-yerkey';
+const BASE   = `https://res.cloudinary.com/${CLOUD}/image/upload`;
 
-// Raw URL — used only where the original file is needed (structured data, sitemaps)
-export function storageUrl(path) {
-  return `${SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${path}`;
+// Raw URL for structured data / sitemap (no transforms)
+export function storageUrl(publicId) {
+  return `${BASE}/${PREFIX}/${publicId}`;
 }
 
-// Optimised URL — WebP, resized, compressed via Supabase image transform
-function imgUrl(bucket, path, width = 1400, quality = 78) {
-  return `${SUPABASE_URL}/storage/v1/render/image/public/${bucket}/${path}?width=${width}&quality=${quality}&format=webp`;
+// Optimised URL — WebP, resized, compressed via Cloudinary transforms
+function imgUrl(publicId, width = 1400, quality = 78) {
+  return `${BASE}/w_${width},q_${quality},f_webp/${PREFIX}/${publicId}`;
 }
 
-// Cover images: full-screen on mobile, half-screen on desktop — 900px is plenty
-function coverUrl(path) { return imgUrl(BUCKET, path, 900, 80); }
-
-// Gallery / lightbox images: can fill a large viewport
-function galleryUrl(path) { return imgUrl(BUCKET, path, 1400, 78); }
-
-function heroUrl(path) {
-  return imgUrl(HERO_BUCKET, path, 1400, 80);
-}
+function coverUrl(id)   { return imgUrl(id, 900, 80); }
+function galleryUrl(id) { return imgUrl(id, 1400, 78); }
+function heroUrl(id)    { return imgUrl(`hero/${id}`, 1400, 80); }
 
 // ─── Hero rotating backgrounds ────────────────────────────────────────────────
 export const HERO_IMAGES = [
-  { src: heroUrl('hero-images/LakeForest.png'),             alt: 'Lake Forest residence' },
-  { src: heroUrl('hero-images/LakeForestFoyer.png'),        alt: 'Lake Forest foyer' },
-  { src: heroUrl('hero-images/LakeForestMasterBedroom.png'),alt: 'Lake Forest master bedroom' },
-  { src: heroUrl('hero-images/LakeSide0474.jpg'),           alt: 'Lakeside estate' },
-  { src: heroUrl('hero-images/LakeSide0479.jpg'),           alt: 'Lakeside interior' },
-  { src: heroUrl('hero-images/LakeSide0485.jpg'),           alt: 'Lakeside living' },
+  { src: heroUrl('LakeForest'),             alt: 'Lake Forest residence' },
+  { src: heroUrl('LakeForestFoyer'),        alt: 'Lake Forest foyer' },
+  { src: heroUrl('LakeForestMasterBedroom'),alt: 'Lake Forest master bedroom' },
+  { src: heroUrl('LakeSide0474'),           alt: 'Lakeside estate' },
+  { src: heroUrl('LakeSide0479'),           alt: 'Lakeside interior' },
+  { src: heroUrl('LakeSide0485'),           alt: 'Lakeside living' },
 ];
 
 // ─── Residences section — all 8 projects ─────────────────────────────────────
@@ -44,14 +38,14 @@ export const PROJECTS = [
     scope: 'Full-floor residence — complete interior commission',
     description:
       "A full-floor residence within one of Chicago's most celebrated buildings. The interiors negotiate the extraordinary with the intimate — Venetian plaster, aged brass, and stone drawn from a single quarry compose rooms of unhurried authority.",
-    cover: coverUrl('the-four-seasons-residences/four-seasons-01.jpg'),
+    cover: coverUrl('projects/four-seasons/four-seasons-01'),
     gallery: [
-      galleryUrl('the-four-seasons-residences/four-seasons-02.jpg'),
-      galleryUrl('the-four-seasons-residences/four-seasons-03.jpg'),
-      galleryUrl('the-four-seasons-residences/four-seasons-04.jpg'),
-      galleryUrl('the-four-seasons-residences/four-seasons-05.jpg'),
-      galleryUrl('the-four-seasons-residences/four-seasons-06.jpg'),
-      galleryUrl('the-four-seasons-residences/four-seasons-07.jpg'),
+      galleryUrl('projects/four-seasons/four-seasons-02'),
+      galleryUrl('projects/four-seasons/four-seasons-03'),
+      galleryUrl('projects/four-seasons/four-seasons-04'),
+      galleryUrl('projects/four-seasons/four-seasons-05'),
+      galleryUrl('projects/four-seasons/four-seasons-06'),
+      galleryUrl('projects/four-seasons/four-seasons-07'),
     ],
   },
   {
@@ -64,21 +58,21 @@ export const PROJECTS = [
     scope: 'Estate residence — complete interior commission',
     description:
       'A classical North Shore estate of considerable scale, resolved with the kind of discipline that large architecture demands. A sweeping entry rotunda, hand-detailed millwork, and a palette drawn from stone and aged gilt compose rooms of genuine ceremony — each one proportioned to the life lived within it.',
-    cover: coverUrl('sunset-lane/sunset-lane-hero.webp'),
+    cover: coverUrl('projects/sunset-lane/sunset-lane-hero'),
     gallery: [
-      galleryUrl('sunset-lane/sunset-lane-1.webp'),
-      galleryUrl('sunset-lane/sunset-lane-2.webp'),
-      galleryUrl('sunset-lane/sunset-lane-3.webp'),
-      galleryUrl('sunset-lane/sunset-lane-4.webp'),
-      galleryUrl('sunset-lane/sunset-lane-5.webp'),
-      galleryUrl('sunset-lane/sunset-lane-6.webp'),
-      galleryUrl('sunset-lane/sunset-lane-7.webp'),
-      galleryUrl('sunset-lane/sunset-lane-8.webp'),
-      galleryUrl('sunset-lane/sunset-lane-9.webp'),
-      galleryUrl('sunset-lane/sunset-lane-10.webp'),
-      galleryUrl('sunset-lane/sunset-lane-11.webp'),
-      galleryUrl('sunset-lane/sunset-lane-12.webp'),
-      galleryUrl('sunset-lane/sunset-lane-13.webp'),
+      galleryUrl('projects/sunset-lane/sunset-lane-1'),
+      galleryUrl('projects/sunset-lane/sunset-lane-2'),
+      galleryUrl('projects/sunset-lane/sunset-lane-3'),
+      galleryUrl('projects/sunset-lane/sunset-lane-4'),
+      galleryUrl('projects/sunset-lane/sunset-lane-5'),
+      galleryUrl('projects/sunset-lane/sunset-lane-6'),
+      galleryUrl('projects/sunset-lane/sunset-lane-7'),
+      galleryUrl('projects/sunset-lane/sunset-lane-8'),
+      galleryUrl('projects/sunset-lane/sunset-lane-9'),
+      galleryUrl('projects/sunset-lane/sunset-lane-10'),
+      galleryUrl('projects/sunset-lane/sunset-lane-11'),
+      galleryUrl('projects/sunset-lane/sunset-lane-12'),
+      galleryUrl('projects/sunset-lane/sunset-lane-13'),
     ],
   },
   {
@@ -91,38 +85,38 @@ export const PROJECTS = [
     scope: 'Lakeside residence — complete interior commission',
     description:
       'A summer residence on the eastern shore of Lake Michigan, designed to dissolve the boundary between interior and landscape. Bleached oak, raw concrete, and palette borrowed entirely from dune grass, water, and sky.',
-    cover: coverUrl('lakeside/LakeSide0472.jpg'),
+    cover: coverUrl('projects/lakeside/cover'),
     gallery: [
-      galleryUrl('lakeside/LakeSide0474.jpg'),
-      galleryUrl('lakeside/LakeSide0475.jpg'),
-      galleryUrl('lakeside/LakeSide0476.jpg'),
-      galleryUrl('lakeside/LakeSide0477.jpg'),
-      galleryUrl('lakeside/LakeSide0478.jpg'),
-      galleryUrl('lakeside/LakeSide0479.jpg'),
-      galleryUrl('lakeside/LakeSide0480.jpg'),
-      galleryUrl('lakeside/LakeSide0481.jpg'),
-      galleryUrl('lakeside/LakeSide0482.jpg'),
-      galleryUrl('lakeside/LakeSide0483.jpg'),
-      galleryUrl('lakeside/LakeSide0484.jpg'),
-      galleryUrl('lakeside/LakeSide0485.jpg'),
-      galleryUrl('lakeside/LakeSide0486.jpg'),
-      galleryUrl('lakeside/LakeSide0487.jpg'),
-      galleryUrl('lakeside/LakeSide0488.jpg'),
-      galleryUrl('lakeside/LakeSide0489.jpg'),
-      galleryUrl('lakeside/LakeSide0490.jpg'),
-      galleryUrl('lakeside/LakeSide0491.jpg'),
-      galleryUrl('lakeside/LakeSide0492.jpg'),
-      galleryUrl('lakeside/LakeSide0493.jpg'),
-      galleryUrl('lakeside/LakeSide0494.jpg'),
-      galleryUrl('lakeside/LakeSide0495.jpg'),
-      galleryUrl('lakeside/LakeSide0496.jpg'),
-      galleryUrl('lakeside/LakeSide0497.jpg'),
-      galleryUrl('lakeside/LakeSide0498.jpg'),
-      galleryUrl('lakeside/LakeSide0499.jpg'),
-      galleryUrl('lakeside/LakeSide0500.jpg'),
-      galleryUrl('lakeside/LakeSide0501.jpg'),
-      galleryUrl('lakeside/LakeSide0503.jpg'),
-      galleryUrl('lakeside/LakesideMI.jpg'),
+      galleryUrl('projects/lakeside/LakeSide0474'),
+      galleryUrl('projects/lakeside/LakeSide0475'),
+      galleryUrl('projects/lakeside/LakeSide0476'),
+      galleryUrl('projects/lakeside/LakeSide0477'),
+      galleryUrl('projects/lakeside/LakeSide0478'),
+      galleryUrl('projects/lakeside/LakeSide0479'),
+      galleryUrl('projects/lakeside/LakeSide0480'),
+      galleryUrl('projects/lakeside/LakeSide0481'),
+      galleryUrl('projects/lakeside/LakeSide0482'),
+      galleryUrl('projects/lakeside/LakeSide0483'),
+      galleryUrl('projects/lakeside/LakeSide0484'),
+      galleryUrl('projects/lakeside/LakeSide0485'),
+      galleryUrl('projects/lakeside/LakeSide0486'),
+      galleryUrl('projects/lakeside/LakeSide0487'),
+      galleryUrl('projects/lakeside/LakeSide0488'),
+      galleryUrl('projects/lakeside/LakeSide0489'),
+      galleryUrl('projects/lakeside/LakeSide0490'),
+      galleryUrl('projects/lakeside/LakeSide0491'),
+      galleryUrl('projects/lakeside/LakeSide0492'),
+      galleryUrl('projects/lakeside/LakeSide0493'),
+      galleryUrl('projects/lakeside/LakeSide0494'),
+      galleryUrl('projects/lakeside/LakeSide0495'),
+      galleryUrl('projects/lakeside/LakeSide0496'),
+      galleryUrl('projects/lakeside/LakeSide0497'),
+      galleryUrl('projects/lakeside/LakeSide0498'),
+      galleryUrl('projects/lakeside/LakeSide0499'),
+      galleryUrl('projects/lakeside/LakeSide0500'),
+      galleryUrl('projects/lakeside/LakeSide0501'),
+      galleryUrl('projects/lakeside/LakeSide0503'),
+      galleryUrl('projects/lakeside/LakesideMI'),
     ],
   },
   {
@@ -135,21 +129,21 @@ export const PROJECTS = [
     scope: 'Historic district residence — complete interior commission',
     description:
       "A complete interior commission in Highland Park's historic district. Every room considered as part of a coherent whole — proportions studied, materials selected for their relationship to light, and each detail resolved against the architecture.",
-    cover: coverUrl('highland-park/HighlandPark2.jpg'),
+    cover: coverUrl('projects/highland-park/HighlandPark2'),
     gallery: [
-      galleryUrl('highland-park/HighlandPark1.png'),
-      galleryUrl('highland-park/HighlandPark2.jpg'),
-      galleryUrl('highland-park/HighlandPark3.jpg'),
-      galleryUrl('highland-park/HighlandPark4.jpg'),
-      galleryUrl('highland-park/HighlandPark6.jpg'),
-      galleryUrl('highland-park/HighlandPark12.jpg'),
-      galleryUrl('highland-park/HighlandPark13.jpg'),
-      galleryUrl('highland-park/HighlandPark14.jpg'),
-      galleryUrl('highland-park/HighlandPark15.jpg'),
-      galleryUrl('highland-park/HighlandPark18.jpg'),
-      galleryUrl('highland-park/HighlandPark19.jpg'),
-      galleryUrl('highland-park/HighlandPark20.jpg'),
-      galleryUrl('highland-park/HighlandPark21.jpg'),
+      galleryUrl('projects/highland-park/HighlandPark1'),
+      galleryUrl('projects/highland-park/HighlandPark2'),
+      galleryUrl('projects/highland-park/HighlandPark3'),
+      galleryUrl('projects/highland-park/HighlandPark4'),
+      galleryUrl('projects/highland-park/HighlandPark6'),
+      galleryUrl('projects/highland-park/HighlandPark12'),
+      galleryUrl('projects/highland-park/HighlandPark13'),
+      galleryUrl('projects/highland-park/HighlandPark14'),
+      galleryUrl('projects/highland-park/HighlandPark15'),
+      galleryUrl('projects/highland-park/HighlandPark18'),
+      galleryUrl('projects/highland-park/HighlandPark19'),
+      galleryUrl('projects/highland-park/HighlandPark20'),
+      galleryUrl('projects/highland-park/HighlandPark21'),
     ],
   },
   {
@@ -162,16 +156,16 @@ export const PROJECTS = [
     scope: 'Desert estate — complete interior commission',
     description:
       'A Californian desert estate at the Villaggio Place development. The palette is drawn from the Sonoran landscape — terracotta, sage, and raw steel — while the scale remains quietly domestic, resisting the temptation of spectacle.',
-    cover: coverUrl('rancho-mirage/RanchoMirage-Hero.png'),
+    cover: coverUrl('projects/rancho-mirage/RanchoMirage-Hero'),
     gallery: [
-      galleryUrl('rancho-mirage/RanchoMirage-02.png'),
-      galleryUrl('rancho-mirage/RanchoMirage-03.png'),
-      galleryUrl('rancho-mirage/RanchoMirage-04.png'),
-      galleryUrl('rancho-mirage/RanchoMirage-05.png'),
-      galleryUrl('rancho-mirage/RanchoMirage-06.png'),
-      galleryUrl('rancho-mirage/RanchoMirage-07.png'),
-      galleryUrl('rancho-mirage/RanchoMirage-08.png'),
-      galleryUrl('rancho-mirage/RanchoMirage-09.png'),
+      galleryUrl('projects/rancho-mirage/RanchoMirage-02'),
+      galleryUrl('projects/rancho-mirage/RanchoMirage-03'),
+      galleryUrl('projects/rancho-mirage/RanchoMirage-04'),
+      galleryUrl('projects/rancho-mirage/RanchoMirage-05'),
+      galleryUrl('projects/rancho-mirage/RanchoMirage-06'),
+      galleryUrl('projects/rancho-mirage/RanchoMirage-07'),
+      galleryUrl('projects/rancho-mirage/RanchoMirage-08'),
+      galleryUrl('projects/rancho-mirage/RanchoMirage-09'),
     ],
   },
   {
@@ -184,13 +178,13 @@ export const PROJECTS = [
     scope: 'Dunes retreat — complete interior commission',
     description:
       'A dunes retreat on the southern shore of Lake Michigan. Sand, cedar, and weathered steel form a home that reads as inevitable against its landscape — as though it arrived not by design but by geological time.',
-    cover: coverUrl('halco-dunes/HalcoDunes.jpeg'),
+    cover: coverUrl('projects/halco-dunes/HalcoDunes'),
     gallery: [
-      galleryUrl('halco-dunes/HalcoDunes2.jpeg'),
-      galleryUrl('halco-dunes/HalcoDunes3.jpeg'),
-      galleryUrl('halco-dunes/HalcoDunes4.jpeg'),
-      galleryUrl('halco-dunes/HalcoDunes5.jpeg'),
-      galleryUrl('halco-dunes/HalcoDunes6.jpeg'),
+      galleryUrl('projects/halco-dunes/HalcoDunes2'),
+      galleryUrl('projects/halco-dunes/HalcoDunes3'),
+      galleryUrl('projects/halco-dunes/HalcoDunes4'),
+      galleryUrl('projects/halco-dunes/HalcoDunes5'),
+      galleryUrl('projects/halco-dunes/HalcoDunes6'),
     ],
   },
   {
@@ -203,17 +197,17 @@ export const PROJECTS = [
     scope: 'Private residence — complete interior commission',
     description:
       'A private residence on Browning Court composed from the architecture inward. Each room resolved as part of a continuous whole — materials, light, and proportion held in deliberate balance throughout.',
-    cover: coverUrl('browningcourt-highlandpark/browningcourt-highlandpark02.jpg'),
+    cover: coverUrl('projects/browning-court/browningcourt-highlandpark02'),
     gallery: [
-      galleryUrl('browningcourt-highlandpark/browningcourt-highlandpark02.jpg'),
-      galleryUrl('browningcourt-highlandpark/browningcourt-highlandpark03.jpg'),
-      galleryUrl('browningcourt-highlandpark/browningcourt-highlandpark04.jpg'),
-      galleryUrl('browningcourt-highlandpark/browningcourt-highlandpark05.jpg'),
-      galleryUrl('browningcourt-highlandpark/browningcourt-highlandpark06.jpg'),
-      galleryUrl('browningcourt-highlandpark/browningcourt-highlandpark07.jpg'),
-      galleryUrl('browningcourt-highlandpark/browningcourt-highlandpark08.jpg'),
-      galleryUrl('browningcourt-highlandpark/browningcourt-highlandpark09.jpg'),
-      galleryUrl('browningcourt-highlandpark/browningcourt-highlandpark10.jpg'),
+      galleryUrl('projects/browning-court/browningcourt-highlandpark02'),
+      galleryUrl('projects/browning-court/browningcourt-highlandpark03'),
+      galleryUrl('projects/browning-court/browningcourt-highlandpark04'),
+      galleryUrl('projects/browning-court/browningcourt-highlandpark05'),
+      galleryUrl('projects/browning-court/browningcourt-highlandpark06'),
+      galleryUrl('projects/browning-court/browningcourt-highlandpark07'),
+      galleryUrl('projects/browning-court/browningcourt-highlandpark08'),
+      galleryUrl('projects/browning-court/browningcourt-highlandpark09'),
+      galleryUrl('projects/browning-court/browningcourt-highlandpark10'),
     ],
   },
   {
@@ -226,23 +220,25 @@ export const PROJECTS = [
     scope: 'Chicago greystone — complete interior commission',
     description:
       'A Chicago greystone reimagined from structure outward. The original architecture demanded restraint — no element added that the building did not already suggest. The result is a city home of genuine character and uncommon quiet.',
-    cover: coverUrl('w-winona/Winona.png'),
+    cover: coverUrl('projects/w-winona/01_939WWinonaSt_2006_HiRes'),
     gallery: [
-      galleryUrl('w-winona/Winona1.png'),
-      galleryUrl('w-winona/Winona2.png'),
-      galleryUrl('w-winona/Winona3.png'),
-      galleryUrl('w-winona/Winona4.png'),
-      galleryUrl('w-winona/Winona5.png'),
-      galleryUrl('w-winona/Winona6.png'),
-      galleryUrl('w-winona/Winona7.png'),
-      galleryUrl('w-winona/Winona8.png'),
-      galleryUrl('w-winona/Winona9.png'),
-      galleryUrl('w-winona/Winona10.png'),
-      galleryUrl('w-winona/Winona11.png'),
-      galleryUrl('w-winona/Winona12.png'),
+      galleryUrl('projects/w-winona/01_939WWinonaSt_2006_HiRes'),
+      galleryUrl('projects/w-winona/02_939WWinonaSt_2008_HiRes'),
+      galleryUrl('projects/w-winona/03_939WWinonaSt_2010_HiRes'),
+      galleryUrl('projects/w-winona/04_939WWinonaSt_2012_HiRes'),
+      galleryUrl('projects/w-winona/06_939WWinonaSt_2015_HiRes'),
+      galleryUrl('projects/w-winona/07_939WWinonaSt_2018_HiRes'),
+      galleryUrl('projects/w-winona/08_939WWinonaSt_2020_HiRes'),
+      galleryUrl('projects/w-winona/10_939WWinonaSt_2022_HiRes'),
+      galleryUrl('projects/w-winona/12_939WWinonaSt_2025_HiRes'),
+      galleryUrl('projects/w-winona/13_939WWinonaSt_2029_HiRes'),
+      galleryUrl('projects/w-winona/14_939WWinonaSt_2031_HiRes'),
+      galleryUrl('projects/w-winona/15_939WWinonaSt_2033_HiRes'),
+      galleryUrl('projects/w-winona/16_939WWinonaSt_2034_HiRes'),
+      galleryUrl('projects/w-winona/17_939WWinonaSt_2037_HiRes'),
     ],
   },
 ];
 
-// ─── Philosophy section image ─────────────────────────────────────────────────
-export const PHILOSOPHY_IMAGE = imgUrl(BUCKET, 'lakeside/LakeSide0477.jpg', 1200, 80);
+// ─── Studio section image ─────────────────────────────────────────────────────
+export const PHILOSOPHY_IMAGE = imgUrl('philosophy', 1200, 80);
